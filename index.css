@@ -1,0 +1,76 @@
+* {
+  padding:0;
+  margin: 0;
+}
+
+.container {
+    /* 和屏幕一样宽 */
+  width: 100%;
+  overflow: hidden;
+  background-color: grey;
+  position: relative;
+}
+
+.list {
+  /* 最开始写css时，设定三张图片，所以container的长度是100%,list的长度是300% */
+  /* 考虑兼容：长度利用js解决：items的个数乘以window.innerWidth + 'px'
+  list.style.width=items.length * window.innerWidth + 'px'
+  */
+  /* width: 300%; */
+  list-style: none;
+}
+
+
+/* 解决高度塌陷:使用
+  ul:after {
+  content: "";
+  display: block;
+  clear: both;
+  }
+  (li没有高度，ul就没有高度，container就没有高度) */
+  /* 作为列表的最后一项，破坏列表的结构，使其恢复到文档流 */
+
+.list::after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+.item {
+width: 375px;
+float: left;
+}
+
+
+.item img{
+  width: 100%;
+  height: 187.5px;
+  /* 去掉背景最下面黑边 */
+  display: block;
+}
+
+
+.point {
+  position: absolute;
+  bottom:10px;
+  list-style: none;
+  /* 居中 */
+  left:50%;
+  transform:translateX(-50%)
+}
+
+
+.point-item {
+  width: 8px;
+  height: 8px;
+  margin: 0px 5px;
+  background-color: white;
+  opacity:.2;
+  float: left;
+  border-radius:100%
+}
+
+.point-item.active {
+opacity: 1;
+}
+
